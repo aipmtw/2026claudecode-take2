@@ -1,29 +1,79 @@
 @import "tailwindcss";
 
 @theme {
-  --color-bg: #0f0f1a;
-  --color-surface: #1a1a2e;
-  --color-surface-hover: #222240;
-  --color-border: #2a2a4a;
-  --color-text: #e0e0f0;
-  --color-text-secondary: #a0a0c0;
-  --color-accent: #d4a574;
-  --color-accent-light: #e8c9a0;
+  --color-bg: var(--t-bg);
+  --color-surface: var(--t-surface);
+  --color-surface-hover: var(--t-surface-hover);
+  --color-border: var(--t-border);
+  --color-text: var(--t-text);
+  --color-text-secondary: var(--t-text-secondary);
+  --color-accent: var(--t-accent);
+  --color-accent-light: var(--t-accent-light);
+  --color-search-bg: var(--t-search-bg);
+  --color-card-shadow: var(--t-card-shadow);
   --color-slash: #7c6fe0;
   --color-keyboard: #4ecdc4;
   --color-cli: #ff6b9d;
   --color-core: #ffd93d;
   --color-vim: #6bcf7f;
-  --color-search-bg: #16162a;
+}
+
+/* Dark theme (default) */
+:root {
+  --t-bg: #0f0f1a;
+  --t-surface: #1a1a2e;
+  --t-surface-hover: #222240;
+  --t-border: #2a2a4a;
+  --t-text: #e0e0f0;
+  --t-text-secondary: #a0a0c0;
+  --t-accent: #d4a574;
+  --t-accent-light: #e8c9a0;
+  --t-search-bg: #16162a;
+  --t-card-shadow: rgba(0, 0, 0, 0.3);
+  --t-header-from: #1a1a2e;
+  --t-header-via: #2d1b4e;
+  --t-header-to: #1a2a3e;
+  --t-active-tab-text: #1a1a2e;
+  --t-code-bg: rgba(212, 165, 116, 0.12);
+  --t-chip-bg: rgba(124, 111, 224, 0.12);
+  --t-chip-text: #b0a8f0;
+  --t-chip-border: rgba(124, 111, 224, 0.25);
+  --t-tip-bg: rgba(255, 217, 61, 0.08);
+  --t-tip-border: rgba(255, 217, 61, 0.2);
+}
+
+/* Light theme */
+[data-theme="light"] {
+  --t-bg: #f5f5fa;
+  --t-surface: #ffffff;
+  --t-surface-hover: #f0eef6;
+  --t-border: #ddd8ee;
+  --t-text: #1a1a2e;
+  --t-text-secondary: #5a5880;
+  --t-accent: #9a6b3a;
+  --t-accent-light: #7a5020;
+  --t-search-bg: #eeedf5;
+  --t-card-shadow: rgba(100, 80, 140, 0.1);
+  --t-header-from: #ebe7f5;
+  --t-header-via: #dfd5f0;
+  --t-header-to: #e0e8f5;
+  --t-active-tab-text: #ffffff;
+  --t-code-bg: rgba(154, 107, 58, 0.1);
+  --t-chip-bg: rgba(124, 111, 224, 0.08);
+  --t-chip-text: #5a4ec0;
+  --t-chip-border: rgba(124, 111, 224, 0.2);
+  --t-tip-bg: rgba(200, 170, 30, 0.08);
+  --t-tip-border: rgba(200, 170, 30, 0.25);
 }
 
 body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans TC", sans-serif;
-  background-color: var(--color-bg);
-  color: var(--color-text);
+  background-color: var(--t-bg);
+  color: var(--t-text);
   margin: 0;
   min-width: 320px;
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  transition: background-color 0.3s, color 0.3s;
 }

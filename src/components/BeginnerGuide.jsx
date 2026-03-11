@@ -34,7 +34,7 @@ function BeginnerGuide() {
             <span
               className={`w-10 h-10 rounded-full flex items-center justify-center text-xs font-bold transition-all duration-300 ${
                 expandedLevel === lvl.level
-                  ? "text-[#1a1a2e] shadow-lg"
+                  ? "shadow-lg"
                   : "bg-surface border-2 border-border text-text-secondary"
               }`}
               style={
@@ -43,6 +43,7 @@ function BeginnerGuide() {
                       backgroundColor: lvl.color,
                       borderColor: lvl.color,
                       boxShadow: `0 0 16px ${lvl.color}80`,
+                      color: "var(--t-active-tab-text)",
                     }
                   : {}
               }
@@ -118,7 +119,7 @@ function BeginnerGuide() {
                 <div
                   className="px-5 pb-5 pt-3 flex flex-col gap-2.5"
                   style={{
-                    backgroundColor: `color-mix(in srgb, ${lvl.color} 3%, var(--color-bg))`,
+                    backgroundColor: `color-mix(in srgb, ${lvl.color} 3%, var(--t-bg))`,
                   }}
                 >
                   {lvl.useCases.map((uc, i) => {
@@ -133,7 +134,7 @@ function BeginnerGuide() {
                         style={
                           isOpen
                             ? {
-                                borderColor: `color-mix(in srgb, ${lvl.color} 40%, var(--color-border))`,
+                                borderColor: `color-mix(in srgb, ${lvl.color} 40%, var(--t-border))`,
                               }
                             : {}
                         }
@@ -157,7 +158,7 @@ function BeginnerGuide() {
                           <div
                             className="px-5 py-4 border-t border-border"
                             style={{
-                              backgroundColor: `color-mix(in srgb, var(--color-surface) 60%, var(--color-bg))`,
+                              backgroundColor: `color-mix(in srgb, var(--t-surface) 60%, var(--t-bg))`,
                             }}
                           >
                             {/* Steps */}
@@ -178,7 +179,7 @@ function BeginnerGuide() {
                                       dangerouslySetInnerHTML={{
                                         __html: step.replace(
                                           /`([^`]+)`/g,
-                                          '<code class="font-mono text-[0.82rem] bg-[rgba(212,165,116,0.12)] text-[var(--color-accent-light)] px-1.5 py-0.5 rounded">$1</code>'
+                                          '<code class="font-mono text-[0.82rem] text-[var(--t-accent-light)] px-1.5 py-0.5 rounded" style="background:var(--t-code-bg)">$1</code>'
                                         ),
                                       }}
                                     />
@@ -199,7 +200,12 @@ function BeginnerGuide() {
                                 {uc.commands.map((cmd, j) => (
                                   <code
                                     key={j}
-                                    className="font-mono text-[0.82rem] bg-slash/12 text-[#b0a8f0] px-3 py-1.5 rounded-md border border-slash/25 whitespace-nowrap"
+                                    className="font-mono text-[0.82rem] px-3 py-1.5 rounded-md border whitespace-nowrap"
+                                    style={{
+                                      backgroundColor: "var(--t-chip-bg)",
+                                      color: "var(--t-chip-text)",
+                                      borderColor: "var(--t-chip-border)",
+                                    }}
                                   >
                                     {cmd}
                                   </code>
@@ -208,7 +214,15 @@ function BeginnerGuide() {
                             </div>
 
                             {/* Tip */}
-                            <div className="flex items-start gap-2 bg-core/8 border border-core/20 rounded-lg px-4 py-3">
+                            <div
+                              className="flex items-start gap-2 rounded-lg px-4 py-3"
+                              style={{
+                                backgroundColor: "var(--t-tip-bg)",
+                                borderWidth: "1px",
+                                borderStyle: "solid",
+                                borderColor: "var(--t-tip-border)",
+                              }}
+                            >
                               <span className="text-base shrink-0 mt-px">
                                 💡
                               </span>
@@ -217,7 +231,7 @@ function BeginnerGuide() {
                                 dangerouslySetInnerHTML={{
                                   __html: uc.tip.replace(
                                     /`([^`]+)`/g,
-                                    '<code class="font-mono text-[0.8rem] bg-[rgba(212,165,116,0.12)] text-[var(--color-accent-light)] px-1 py-0.5 rounded">$1</code>'
+                                    '<code class="font-mono text-[0.8rem] text-[var(--t-accent-light)] px-1 py-0.5 rounded" style="background:var(--t-code-bg)">$1</code>'
                                   ),
                                 }}
                               />

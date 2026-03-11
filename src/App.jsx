@@ -1,4 +1,4 @@
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import { categories, commands } from "./data/commands";
 import BeginnerGuide from "./components/BeginnerGuide";
 
@@ -10,9 +10,32 @@ const categoryBorderColors = {
   vim: "border-l-vim",
 };
 
+function useTheme() {
+  const [theme, setTheme] = useState(() => {
+    if (typeof window !== "undefined") {
+      return localStorage.getItem("theme") || "dark";
+    }
+    return "dark";
+  });
+
+  useEffect(() => {
+    const root = document.documentElement;
+    if (theme === "light") {
+      root.setAttribute("data-theme", "light");
+    } else {
+      root.removeAttribute("data-theme");
+    }
+    localStorage.setItem("theme", theme);
+  }, [theme]);
+
+  const toggle = () => setTheme((t) => (t === "dark" ? "light" : "dark"));
+  return { theme, toggle };
+}
+
 function App() {
   const [activeCategory, setActiveCategory] = useState("all");
   const [searchTerm, setSearchTerm] = useState("");
+  const { theme, toggle: toggleTheme } = useTheme();
 
   const filteredCommands = useMemo(() => {
     return commands.filter((cmd) => {
@@ -39,7 +62,21 @@ function App() {
   return (
     <div className="max-w-[1200px] mx-auto">
       {/* Header */}
-      <header className="bg-gradient-to-br from-[#1a1a2e] via-[#2d1b4e] to-[#1a2a3e] px-8 py-14 text-center border-b border-border">
+      <header
+        className="relative px-8 py-14 text-center border-b border-border transition-colors duration-300"
+        style={{
+          background: `linear-gradient(135deg, var(--t-header-from), var(--t-header-via), var(--t-header-to))`,
+        }}
+      >
+        {/* Theme Toggle */}
+        <button
+          onClick={toggleTheme}
+          className="absolute top-5 right-5 w-11 h-11 rounded-full bg-surface/60 backdrop-blur-sm border border-border text-xl cursor-pointer transition-all duration-300 hover:bg-surface-hover hover:scale-110 flex items-center justify-center"
+          title={theme === "dark" ? "切換到淺色模式" : "切換到深色模式"}
+        >
+          {theme === "dark" ? "\u2600\uFE0F" : "\uD83C\uDF19"}
+        </button>
+
         <h1 className="text-4xl font-bold bg-gradient-to-r from-accent via-accent-light to-accent bg-clip-text text-transparent mb-2">
           Claude Code 指令大全
         </h1>
@@ -57,7 +94,7 @@ function App() {
       </header>
 
       {/* Controls */}
-      <div className="sticky top-0 z-50 bg-bg/80 backdrop-blur-xl px-6 py-4 border-b border-border">
+      <div className="sticky top-0 z-50 bg-bg/80 backdrop-blur-xl px-6 py-4 border-b border-border transition-colors duration-300">
         <div className="relative max-w-[600px] mx-auto mb-4">
           <span className="absolute left-4 top-1/2 -translate-y-1/2 text-lg opacity-50">
             &#128269;
@@ -83,9 +120,10 @@ function App() {
           <button
             className={`px-4 py-2 border rounded-lg text-sm whitespace-nowrap transition-all duration-200 cursor-pointer ${
               activeCategory === "all"
-                ? "bg-accent text-[#1a1a2e] border-accent font-semibold shadow-lg shadow-accent/20"
+                ? "bg-accent border-accent font-semibold shadow-lg shadow-accent/20"
                 : "bg-surface border-border text-text-secondary hover:bg-surface-hover hover:text-text"
             }`}
+            style={activeCategory === "all" ? { color: "var(--t-active-tab-text)" } : {}}
             onClick={() => setActiveCategory("all")}
           >
             全部
@@ -95,9 +133,10 @@ function App() {
               key={cat.id}
               className={`px-4 py-2 border rounded-lg text-sm whitespace-nowrap transition-all duration-200 cursor-pointer ${
                 activeCategory === cat.id
-                  ? "bg-accent text-[#1a1a2e] border-accent font-semibold shadow-lg shadow-accent/20"
+                  ? "bg-accent border-accent font-semibold shadow-lg shadow-accent/20"
                   : "bg-surface border-border text-text-secondary hover:bg-surface-hover hover:text-text"
               }`}
+              style={activeCategory === cat.id ? { color: "var(--t-active-tab-text)" } : {}}
               onClick={() => setActiveCategory(cat.id)}
             >
               {cat.name.split("（")[0]}
@@ -154,11 +193,15 @@ function App() {
                     return (
                       <CardTag
                         key={i}
-                        className={`block bg-surface border border-border rounded-xl px-5 py-4 transition-all duration-200 border-l-[3px] ${borderColor} hover:bg-surface-hover hover:-translate-y-0.5 hover:shadow-lg hover:shadow-black/30 ${cmd.docUrl ? "no-underline text-inherit cursor-pointer group" : ""}`}
+                        className={`block bg-surface border border-border rounded-xl px-5 py-4 transition-all duration-200 border-l-[3px] ${borderColor} hover:bg-surface-hover hover:-translate-y-0.5 hover:shadow-lg ${cmd.docUrl ? "no-underline text-inherit cursor-pointer group" : ""}`}
+                        style={{ "--tw-shadow-color": "var(--t-card-shadow)" }}
                         {...linkProps}
                       >
                         <div className="mb-1.5 flex items-center">
-                          <code className="font-mono text-[0.95rem] font-semibold text-accent-light bg-accent/10 px-2 py-0.5 rounded">
+                          <code
+                            className="font-mono text-[0.95rem] font-semibold text-accent-light px-2 py-0.5 rounded"
+                            style={{ backgroundColor: "var(--t-code-bg)" }}
+                          >
                             {cmd.command}
                           </code>
                           {cmd.docUrl && (
