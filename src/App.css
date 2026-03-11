@@ -277,8 +277,28 @@ body {
   border-left-color: var(--vim);
 }
 
+a.command-card {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+  cursor: pointer;
+}
+
+a.command-card:hover .doc-link-icon {
+  opacity: 1;
+}
+
+.doc-link-icon {
+  margin-left: 0.5rem;
+  font-size: 0.85rem;
+  opacity: 0.4;
+  transition: opacity 0.2s;
+}
+
 .command-name {
   margin-bottom: 0.4rem;
+  display: flex;
+  align-items: center;
 }
 
 .command-name code {

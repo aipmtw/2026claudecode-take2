@@ -102,18 +102,25 @@ function App() {
                 </div>
 
                 <div className="commands-grid">
-                  {grouped[cat.id].map((cmd, i) => (
-                    <div key={i} className={`command-card ${cmd.category}`}>
-                      <div className="command-name">
-                        <code>{cmd.command}</code>
-                      </div>
-                      <div className="command-brief">{cmd.brief}</div>
-                      <div className="command-usecase">
-                        <span className="usecase-label">使用情境：</span>
-                        {cmd.useCase}
-                      </div>
-                    </div>
-                  ))}
+                  {grouped[cat.id].map((cmd, i) => {
+                    const CardTag = cmd.docUrl ? "a" : "div";
+                    const linkProps = cmd.docUrl
+                      ? { href: cmd.docUrl, target: "_blank", rel: "noopener noreferrer" }
+                      : {};
+                    return (
+                      <CardTag key={i} className={`command-card ${cmd.category} ${cmd.docUrl ? "clickable" : ""}`} {...linkProps}>
+                        <div className="command-name">
+                          <code>{cmd.command}</code>
+                          {cmd.docUrl && <span className="doc-link-icon" title="開啟官方文件">&#x2197;</span>}
+                        </div>
+                        <div className="command-brief">{cmd.brief}</div>
+                        <div className="command-usecase">
+                          <span className="usecase-label">使用情境：</span>
+                          {cmd.useCase}
+                        </div>
+                      </CardTag>
+                    );
+                  })}
                 </div>
               </section>
             ))
