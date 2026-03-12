@@ -103,6 +103,9 @@ function App() {
             markluceai+service@gmail.com
           </a>
         </p>
+        <p className="text-text-secondary/60 text-xs mt-2">
+          馬克路思科技有限公司 | 統一編號 60670979 | 臺中市中區大誠里臺灣大道一段501號10樓之1
+        </p>
       </header>
 
       {/* Controls */}
@@ -220,6 +223,9 @@ function App() {
         >
           markluceai+service@gmail.com
         </a>
+        <p className="text-text-secondary/60 text-xs mt-3">
+          馬克路思科技有限公司 | 統一編號 60670979 | 臺中市中區大誠里臺灣大道一段501號10樓之1
+        </p>
         <p className="text-text-secondary text-sm mt-4">
           Claude Code 指令參考手冊 — 繁體中文版 | 資料來源：Claude Code 官方文件
         </p>
