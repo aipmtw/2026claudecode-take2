@@ -4,6 +4,7 @@ import BeginnerGuide from "./components/BeginnerGuide";
 import CommandModal from "./components/CommandModal";
 import Workshop from "./components/Workshop";
 import DevNote from "./components/DevNote";
+import Welcome from "./components/Welcome";
 
 const categoryBorderColors = {
   slash: "border-l-slash",
@@ -85,6 +86,16 @@ function App() {
     );
   }
 
+  if (currentView === "welcome") {
+    return (
+      <Welcome
+        onBack={() => setCurrentView("main")}
+        theme={theme}
+        toggleTheme={toggleTheme}
+      />
+    );
+  }
+
   return (
     <div className="max-w-[1200px] mx-auto">
       {/* Header */}
@@ -109,6 +120,13 @@ function App() {
           >
             <span>🛠</span>
             <span>Dev Note</span>
+          </button>
+          <button
+            onClick={() => setCurrentView("welcome")}
+            className="px-4 py-2.5 rounded-full bg-surface/60 backdrop-blur-sm border border-border text-sm cursor-pointer transition-all duration-300 hover:bg-surface-hover hover:scale-105 text-text-secondary flex items-center gap-2"
+          >
+            <span>🎉</span>
+            <span>Welcome</span>
           </button>
         </div>
 
