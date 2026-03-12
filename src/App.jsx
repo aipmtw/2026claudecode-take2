@@ -107,27 +107,6 @@ function App() {
 
       {/* Controls */}
       <div className="sticky top-0 z-50 bg-bg/80 backdrop-blur-xl px-6 py-4 border-b border-border transition-colors duration-300">
-        <div className="relative max-w-[600px] mx-auto mb-4">
-          <span className="absolute left-4 top-1/2 -translate-y-1/2 text-lg opacity-50">
-            &#128269;
-          </span>
-          <input
-            type="text"
-            placeholder="搜尋指令、說明或使用情境..."
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-            className="w-full py-3 px-10 border border-border rounded-xl bg-search-bg text-text text-base outline-none transition-colors duration-200 focus:border-accent focus:ring-1 focus:ring-accent/50 placeholder:text-text-secondary"
-          />
-          {searchTerm && (
-            <button
-              className="absolute right-3 top-1/2 -translate-y-1/2 bg-transparent border-none text-text-secondary cursor-pointer text-base px-2 py-1 rounded-md hover:bg-surface-hover hover:text-text transition-colors"
-              onClick={() => setSearchTerm("")}
-            >
-              ✕
-            </button>
-          )}
-        </div>
-
         <div className="flex gap-2 overflow-x-auto pb-1 justify-center flex-wrap">
           <button
             className={`px-4 py-2 border rounded-lg text-sm whitespace-nowrap transition-all duration-200 cursor-pointer ${
