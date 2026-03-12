@@ -122,6 +122,15 @@ function App() {
           >
             GitHub Repo
           </a>
+          {" | "}
+          <a
+            href="https://markluce.github.io/2026claudecode-take2/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-accent-light/70 hover:text-accent-light transition-colors no-underline"
+          >
+            markluce.github.io
+          </a>
         </p>
       </header>
 
