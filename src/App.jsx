@@ -3,6 +3,7 @@ import { categories, commands } from "./data/commands";
 import BeginnerGuide from "./components/BeginnerGuide";
 import CommandModal from "./components/CommandModal";
 import Workshop from "./components/Workshop";
+import DevNote from "./components/DevNote";
 
 const categoryBorderColors = {
   slash: "border-l-slash",
@@ -74,6 +75,16 @@ function App() {
     );
   }
 
+  if (currentView === "devnote") {
+    return (
+      <DevNote
+        onBack={() => setCurrentView("main")}
+        theme={theme}
+        toggleTheme={toggleTheme}
+      />
+    );
+  }
+
   return (
     <div className="max-w-[1200px] mx-auto">
       {/* Header */}
@@ -83,14 +94,23 @@ function App() {
           background: `linear-gradient(135deg, var(--t-header-from), var(--t-header-via), var(--t-header-to))`,
         }}
       >
-        {/* Workshop Button */}
-        <button
-          onClick={() => setCurrentView("workshop")}
-          className="absolute top-5 left-5 px-4 py-2.5 rounded-full bg-surface/60 backdrop-blur-sm border border-border text-sm cursor-pointer transition-all duration-300 hover:bg-surface-hover hover:scale-105 text-text-secondary flex items-center gap-2"
-        >
-          <span>📖</span>
-          <span>工作坊</span>
-        </button>
+        {/* Nav Buttons */}
+        <div className="absolute top-5 left-5 flex gap-2">
+          <button
+            onClick={() => setCurrentView("workshop")}
+            className="px-4 py-2.5 rounded-full bg-surface/60 backdrop-blur-sm border border-border text-sm cursor-pointer transition-all duration-300 hover:bg-surface-hover hover:scale-105 text-text-secondary flex items-center gap-2"
+          >
+            <span>📖</span>
+            <span>新手工作坊</span>
+          </button>
+          <button
+            onClick={() => setCurrentView("devnote")}
+            className="px-4 py-2.5 rounded-full bg-surface/60 backdrop-blur-sm border border-border text-sm cursor-pointer transition-all duration-300 hover:bg-surface-hover hover:scale-105 text-text-secondary flex items-center gap-2"
+          >
+            <span>🛠</span>
+            <span>Dev Note</span>
+          </button>
+        </div>
 
         {/* Theme Toggle */}
         <button

@@ -1,7 +1,7 @@
 import { useState } from "react";
-import { workshopSteps } from "../data/workshopSteps";
+import { devNoteSteps } from "../data/devNoteSteps";
 
-function Workshop({ onBack, theme, toggleTheme }) {
+function DevNote({ onBack, theme, toggleTheme }) {
   const [expandedStep, setExpandedStep] = useState(1);
 
   return (
@@ -31,51 +31,27 @@ function Workshop({ onBack, theme, toggleTheme }) {
           {theme === "dark" ? "\u2600\uFE0F" : "\uD83C\uDF19"}
         </button>
 
-        <h1 className="text-4xl font-bold bg-gradient-to-r from-keyboard via-slash to-vim bg-clip-text text-transparent mb-2">
-          新手工作坊
+        <h1 className="text-4xl font-bold bg-gradient-to-r from-accent via-accent-light to-accent bg-clip-text text-transparent mb-2">
+          Dev Note：開發筆記
         </h1>
-        <p className="text-text-secondary text-lg mb-2">
-          從零開始，打造屬於你自己的網站並免費發布到網路上
+        <p className="text-text-secondary text-lg mb-4">
+          完整記錄我們如何一步步建立這個 Claude Code 繁體中文參考手冊
         </p>
-        <p className="text-text-secondary/70 text-sm mb-4">
-          不需要複製任何人的專案——你的網站、你的風格、你的方向
-        </p>
-        <div className="flex gap-3 justify-center flex-wrap">
+        <div className="flex gap-3 justify-center">
           <span className="bg-accent/15 text-accent-light px-4 py-1.5 rounded-full text-sm border border-accent/30 backdrop-blur-sm">
-            {workshopSteps.length} 個步驟
+            {devNoteSteps.length} 個步驟
           </span>
           <span className="bg-accent/15 text-accent-light px-4 py-1.5 rounded-full text-sm border border-accent/30 backdrop-blur-sm">
-            {workshopSteps.filter((s) => s.isOptional).length} 個選修
-          </span>
-          <span className="bg-keyboard/15 text-keyboard px-4 py-1.5 rounded-full text-sm border border-keyboard/30 backdrop-blur-sm">
-            完全免費
+            {devNoteSteps.filter((s) => s.isOptional).length} 個選修
           </span>
         </div>
       </header>
 
       <main className="p-6">
-        {/* Encouragement Banner */}
-        <div
-          className="rounded-xl px-6 py-5 mb-8 text-center"
-          style={{
-            backgroundColor: "var(--t-tip-bg)",
-            border: "1px solid var(--t-tip-border)",
-          }}
-        >
-          <p className="text-text text-base font-medium mb-2">
-            每個人的網站都是獨一無二的
-          </p>
-          <p className="text-text-secondary text-sm leading-relaxed max-w-[600px] mx-auto">
-            你可以做個人作品集、部落格、學習筆記、工具箱、食譜收藏、旅行日記⋯⋯什麼都可以。
-            這個工作坊教你「如何」建立和發布網站，至於「做什麼」，完全由你決定。
-            最終目標：在 GitHub 上擁有你自己的免費網址，讓全世界都能看到你的作品！
-          </p>
-        </div>
-
         {/* Progress Dots */}
         <div className="flex justify-center items-center gap-0 mb-8 relative px-4 flex-wrap">
           <div className="absolute top-1/2 left-[5%] right-[5%] h-0.5 bg-border -translate-y-1/2 z-0 hidden sm:block" />
-          {workshopSteps.map((s) => (
+          {devNoteSteps.map((s) => (
             <button
               key={s.step}
               className="flex flex-col items-center gap-1 bg-transparent border-none cursor-pointer z-10 px-3 py-2 transition-all duration-300"
@@ -116,7 +92,7 @@ function Workshop({ onBack, theme, toggleTheme }) {
 
         {/* Step Cards */}
         <div className="flex flex-col gap-3">
-          {workshopSteps.map((s) => {
+          {devNoteSteps.map((s) => {
             const isExpanded = expandedStep === s.step;
             return (
               <div
@@ -294,24 +270,6 @@ function Workshop({ onBack, theme, toggleTheme }) {
             );
           })}
         </div>
-
-        {/* Final Encouragement */}
-        <div
-          className="rounded-xl px-6 py-5 mt-8 text-center"
-          style={{
-            backgroundColor: `color-mix(in srgb, #6bcf7f 5%, var(--t-bg))`,
-            border: "1px solid color-mix(in srgb, #6bcf7f 20%, var(--t-border))",
-          }}
-        >
-          <p className="text-text text-lg font-semibold mb-2">
-            你已經準備好了！
-          </p>
-          <p className="text-text-secondary text-sm leading-relaxed max-w-[600px] mx-auto">
-            完成以上步驟後，你就擁有了一個免費的、公開的個人網站。
-            持續更新、持續學習、持續創造——每個厲害的網站都是從一個簡單的頁面開始的。
-            祝你開發愉快！
-          </p>
-        </div>
       </main>
 
       {/* Footer */}
@@ -334,4 +292,4 @@ function Workshop({ onBack, theme, toggleTheme }) {
   );
 }
 
-export default Workshop;
+export default DevNote;
