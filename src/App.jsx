@@ -97,10 +97,10 @@ function App() {
         <p className="text-text-secondary/80 text-sm">
           由 Mark Luce 與 Claude (Anthropic) 攜手合作打造 |{" "}
           <a
-            href="mailto:markluceai+service@gmail.com"
+            href="mailto:markluceai@gmail.com"
             className="text-accent-light/70 hover:text-accent-light transition-colors no-underline"
           >
-            markluceai+service@gmail.com
+            markluceai@gmail.com
           </a>
         </p>
         <p className="text-text-secondary/60 text-xs mt-2">
@@ -218,10 +218,10 @@ function App() {
           由 Mark Luce 與 Claude (Anthropic) 攜手合作打造
         </p>
         <a
-          href="mailto:markluceai+service@gmail.com"
+          href="mailto:markluceai@gmail.com"
           className="text-accent hover:text-accent-light transition-colors text-base no-underline"
         >
-          markluceai+service@gmail.com
+          markluceai@gmail.com
         </a>
         <p className="text-text-secondary/60 text-xs mt-3">
           馬克路思科技有限公司 | 統一編號 60670979 | 臺中市中區大誠里臺灣大道一段501號10樓之1
