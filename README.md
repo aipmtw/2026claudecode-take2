@@ -2,6 +2,6 @@
 
 ## 公開網址
 
-**https://markluce.ai/**
+**https://markluce.github.io/2026claudecode-take2/**
 
-Claude Code 第二版 - AI 協作開發（自訂網域）
+Claude Code 第二版 - AI 協作開發
